@@ -1,0 +1,392 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="color-scheme" content="light dark"><title>AAM - คู่มือการใช้งาน</title><style>:root{--bg:#ffffff;--fg:#1b1b1f;--mut:#5d6068;--line:#e3e5ea;--acc:#0b6b53;--accbg:#eef7f4;--code:#f4f5f7}
+@media(prefers-color-scheme:dark){:root{--bg:#14161a;--fg:#e8e9ec;--mut:#9aa0aa;--line:#2a2e36;--acc:#4bd6ac;--accbg:#18241f;--code:#1c1f25}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;padding:18px 16px 64px;background:var(--bg);color:var(--fg);
+ font-family:"Sarabun","Noto Sans Thai","Segoe UI",system-ui,-apple-system,sans-serif;
+ font-size:17px;line-height:1.75;word-break:break-word}
+.wrap{max-width:780px;margin:0 auto}
+h1{font-size:1.6rem;line-height:1.35;margin:.2em 0 .6em;color:var(--acc)}
+h2{font-size:1.28rem;margin:1.9em 0 .5em;padding-top:.7em;border-top:2px solid var(--line)}
+h3{font-size:1.1rem;margin:1.4em 0 .4em;color:var(--acc)}
+h4{font-size:1rem;margin:1.1em 0 .3em}
+p{margin:.55em 0}
+p.num{margin:.4em 0 .4em .2em}
+ul{margin:.5em 0;padding-left:1.25em}
+li{margin:.35em 0}
+hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+code{background:var(--code);padding:.12em .4em;border-radius:5px;font-size:.9em;
+ font-family:ui-monospace,"Cascadia Mono",Consolas,monospace}
+pre{background:var(--code);padding:13px 14px;border-radius:10px;overflow-x:auto;
+ font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:.86rem;line-height:1.6;margin:.8em 0}
+blockquote{margin:.9em 0;padding:.7em .9em;background:var(--accbg);
+ border-left:4px solid var(--acc);border-radius:0 8px 8px 0}
+blockquote p{margin:0}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:.9em 0;
+ border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--accbg);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+strong{font-weight:600}
+@media(max-width:520px){body{font-size:16px;padding:14px 12px 56px}h1{font-size:1.38rem}
+ h2{font-size:1.16rem}table{font-size:.86rem}th,td{padding:8px 9px}}</style></head><body><div class="wrap"><h1>AAM Trading System — คู่มือการใช้งาน</h1>
+<p>ระบบเทรดอัตโนมัติสำหรับ MetaTrader 5</p>
+<hr>
+<h2>1. เลือกเวอร์ชันที่เหมาะกับคุณ</h2>
+<p>ระบบมี <strong>6 รุ่น</strong> แบ่งเป็น 2 ตระกูล คือ <strong>V18</strong> และ <strong>V19</strong> แต่ละตระกูลมี 3 บุคลิก</p>
+<div class="tw"><table><thead><tr>
+<th>รุ่น</th>
+<th>บุคลิก</th>
+<th>เหมาะกับใคร</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>GOD</strong></td>
+<td>ตามแนวโน้มใหญ่อย่างเดียว มีไม้เสริมเก็บจังหวะย่อย แต่ไม่เปิดไม้สวนแนวโน้ม</td>
+<td>คนที่ชอบไม้คุณภาพสูง เรียบง่าย คาดเดาได้</td>
+</tr>
+<tr>
+<td><strong>DEVIL</strong></td>
+<td>ทุกอย่างของ GOD บวกไม้สวนแนวโน้ม เมื่อเกิดการย่อตัวที่ยืนยันแล้ว</td>
+<td>คนที่ต้องการจังหวะมากขึ้น รับความผันผวนได้</td>
+</tr>
+<tr>
+<td><strong>HUMAN</strong></td>
+<td>ทำงานสองสมองเต็มรูปแบบ ครบทุกความสามารถในตัวเดียว</td>
+<td>คนที่ต้องการจำนวนไม้มากที่สุดโดยยังคงคุณภาพ</td>
+</tr>
+</tbody></table></div>
+<p><strong>ทั้งสามรุ่นใช้แกนเดียวกัน</strong> — H4 กำหนดทิศทาง · H1 ยืนยัน · สร้างแนวรับแนวต้านจาก H4 H1 M15 เท่านั้น ต่างกันที่มีสมองที่สองและไม้เสริมหรือไม่</p>
+<p><strong>ความต่างของ V18 กับ V19</strong></p>
+<ul>
+<li><strong>V18</strong> — สมองอ่านเส้นแนวรับแนวต้าน + โครงสร้างตลาด (SMC)</li>
+<li><strong>V19</strong> — ทุกอย่างของ V18 <strong>บวกระบบนับคลื่น Elliott Wave</strong> ที่นับแบบซ้อนชั้นจริง ทำให้มีจังหวะเข้าไม้เสริมมากกว่า</li>
+</ul>
+<blockquote>แนะนำสำหรับผู้เริ่มต้น: <strong>V19 HUMAN</strong> — ครบที่สุดในตัวเดียว</blockquote>
+<blockquote>ห้ามติดตั้ง V18 กับ V19 ปนกันในโปรแกรมเดียวกัน ให้เลือกใช้ตระกูลเดียว</blockquote>
+<hr>
+<h2>2. ติดตั้ง</h2>
+<p class="num"><b>1.</b> เปิด MT5 → เมนู <strong>File → Open Data Folder</strong></p>
+<p class="num"><b>2.</b> เข้าโฟลเดอร์ <code>MQL5\Experts\</code></p>
+<p class="num"><b>3.</b> คัดลอกไฟล์ <strong><code>.ex5</code></strong> ของรุ่นที่เลือกใส่ลงไป</p>
+<p class="num"><b>4.</b> กลับไปที่ MT5 → คลิกขวาที่หน้าต่าง <strong>Navigator</strong> → <strong>Refresh</strong></p>
+<p class="num"><b>5.</b> ลากชื่อ EA จาก Navigator ลงบนกราฟที่ต้องการ</p>
+<p class="num"><b>6.</b> หน้าต่างตั้งค่าจะเด้งขึ้น → แท็บ <strong>Common</strong> → ติ๊ก <strong>Allow Algo Trading</strong> → กด <strong>OK</strong></p>
+<p class="num"><b>7.</b> ตรวจว่าปุ่ม <strong>Algo Trading</strong> บนแถบเครื่องมือ MT5 เป็นสีเขียว</p>
+<p class="num"><b>8.</b> แผงควบคุมสีดำจะปรากฏบนกราฟ = พร้อมใช้งาน</p>
+<blockquote>ไฟล์ <code>.mq5</code> คือซอร์สโค้ด แนบมาให้เก็บไว้ ไม่จำเป็นต้องใช้ในการติดตั้ง</blockquote>
+<p><strong>เมื่อได้รับไฟล์เวอร์ชันใหม่:</strong> คัดลอกไฟล์ทับแล้ว <strong>ต้องลาก EA ลงกราฟใหม่อีกครั้ง</strong> มิฉะนั้นตัวที่ทำงานอยู่จะยังเป็นเวอร์ชันเดิม</p>
+<hr>
+<h2>3. แผงควบคุม — ปุ่มทั้งหมด</h2>
+<p>แผงควบคุมอยู่บนกราฟ ประกอบด้วยปุ่ม 7 ปุ่ม และช่องกำหนดขนาดไม้ 1 ช่อง</p>
+<h3><code>เทรดอัตโนมัติ</code> — สวิตช์หลัก</h3>
+<div class="tw"><table><thead><tr>
+<th>สถานะ</th>
+<th>ผล</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>ON</strong></td>
+<td>ระบบเปิดไม้ใหม่ได้</td>
+</tr>
+<tr>
+<td><strong>OFF</strong></td>
+<td>ไม่เปิดไม้ใหม่ แต่ยังวิเคราะห์ ตีเส้น และ <strong>ดูแลไม้ที่เปิดอยู่ครบทุกอย่าง</strong></td>
+</tr>
+</tbody></table></div>
+<p>ปิดปุ่มนี้คือ "หยุดรับไม้ใหม่ชั่วคราว" ไม่ใช่การปิดระบบ — ไม้ที่ค้างอยู่ยังเลื่อน SL ตามปกติ</p>
+<h3><code>สแกน 20 คู่</code> — ขยายไปคู่เงินอื่น</h3>
+<div class="tw"><table><thead><tr>
+<th>สถานะ</th>
+<th>ผล</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>ON</strong></td>
+<td>ใช้สมองชุดเดียวกันเฝ้าคู่เงินอื่นตามที่กำหนด และเปิดไม้ได้</td>
+</tr>
+<tr>
+<td><strong>OFF</strong></td>
+<td>ทำงานเฉพาะกราฟที่ EA ติดตั้งอยู่</td>
+</tr>
+</tbody></table></div>
+<p>กำหนดรายชื่อคู่เงินและจำนวนไม้พร้อมกันได้ในหัวข้อ <code>TOP20 SCANNER</code></p>
+<h3><code>เปิดหลายไม้</code> — อนุญาตให้ถือหลายไม้พร้อมกัน</h3>
+<div class="tw"><table><thead><tr>
+<th>สถานะ</th>
+<th>ผล</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>ON</strong></td>
+<td>เจอจังหวะใหม่เปิดเพิ่มได้แม้มีไม้เดิมอยู่ (สูงสุด 5 ไม้)</td>
+</tr>
+<tr>
+<td><strong>OFF</strong></td>
+<td>ถือครั้งละ 1 ไม้ ต้องปิดก่อนจึงเปิดใหม่</td>
+</tr>
+</tbody></table></div>
+<p>เปิด ON จะได้ไม้เสริมและไม้สวนเทรนด์ด้วย · ปิด OFF จะเรียบง่ายและความเสี่ยงต่ำกว่า</p>
+<h3><code>LOT</code> — เลือกวิธีกำหนดขนาดไม้ (กดสลับ 2 แบบ)</h3>
+<div class="tw"><table><thead><tr>
+<th>กด</th>
+<th>ปุ่มขึ้นว่า</th>
+<th>ใช้อะไร</th>
+</tr></thead><tbody>
+<tr>
+<td>ครั้งแรก</td>
+<td><strong>LOT • ล็อตกำหนดเอง</strong></td>
+<td>ใช้ตัวเลขล็อตที่กรอกไว้ตรงๆ ไม่เปลี่ยนแปลงตามทุน</td>
+</tr>
+<tr>
+<td>กดอีกที</td>
+<td><strong>LOT • % กำหนดเอง 20%</strong></td>
+<td>ใช้เปอร์เซ็นต์ที่กรอกไว้ คำนวณขนาดให้อัตโนมัติ</td>
+</tr>
+</tbody></table></div>
+<p>ปุ่มจะแสดงเปอร์เซ็นต์ที่ตั้งไว้บนตัวปุ่มเลย จะได้เห็นทันทีว่ากำลังใช้กี่เปอร์เซ็นต์</p>
+<p><strong>โหมดเปอร์เซ็นต์คำนวณจากระยะ SL ของไม้นั้นจริงๆ</strong> — SL แคบจะได้ล็อตใหญ่ SL กว้างจะได้ล็อตเล็ก โดยอัตโนมัติ หากขนาดที่คำนวณได้เกินมาร์จิ้นที่มี ระบบจะไม่เปิดไม้และแจ้งเหตุผลบนแผง</p>
+<h3>ช่องกรอก + ปุ่ม <code>ล็อก</code></h3>
+<p>ใต้ปุ่มมีช่องกรอกสองช่องเรียงกัน</p>
+<pre>
+[ 0.01 ]   [ 20 ]   [ ล็อก ]
+  ล็อต       %
+</pre>
+<p class="num"><b>1.</b> ช่องซ้าย พิมพ์ขนาดล็อตที่ต้องการ เช่น <code>0.02</code></p>
+<p class="num"><b>2.</b> ช่องขวา พิมพ์เปอร์เซ็นต์ที่ต้องการ เช่น <code>20</code></p>
+<p class="num"><b>3.</b> กดปุ่ม <strong><code>ล็อก</code></strong> ครั้งเดียว — <strong>ล็อกทั้งสองช่องพร้อมกัน</strong></p>
+<p><strong>จะใช้ค่าไหนจริง ขึ้นอยู่กับปุ่ม <code>LOT</code> ว่าตั้งไว้แบบไหน</strong> ไม่ได้ขึ้นกับว่าพิมพ์ช่องไหนล่าสุด จึงกรอกทั้งสองช่องเตรียมไว้ แล้วสลับไปมาด้วยปุ่มเดียวได้เลย</p>
+<p>ยกเลิกการล็อกล็อต: ใส่ <code>0</code> ในช่องล็อตแล้วกดล็อก</p>
+<p>ถ้าใส่เปอร์เซ็นต์เกิน 100 ระบบจะปรับลงเป็น 100 ให้ และถ้าใส่ 0 หรือค่าติดลบจะไม่รับ</p>
+<h3><code>แสดงผลบนกราฟ</code> — เปิด/ปิดการวาด</h3>
+<div class="tw"><table><thead><tr>
+<th>สถานะ</th>
+<th>ผล</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>ON</strong></td>
+<td>วาดเส้นแนวรับแนวต้าน จุดเปลี่ยนโครงสร้าง โซนสำคัญ และคลื่น (V19)</td>
+</tr>
+<tr>
+<td><strong>OFF</strong></td>
+<td>กราฟโล่ง — <strong>การวิเคราะห์ยังทำงานเหมือนเดิมทุกประการ</strong> เพียงไม่วาดออกมา</td>
+</tr>
+</tbody></table></div>
+<h3><code>ล้างค่า</code> — รีเซ็ตสถิติ</h3>
+<p>กด <strong>2 ครั้งภายใน 5 วินาที</strong> เพื่อยืนยัน · ล้างจำนวนไม้ สถิติชนะ/แพ้ และกำไรสะสม · <strong>ไม่ปิดไม้ที่เปิดอยู่</strong></p>
+<h3><code>ปิดฉุกเฉิน</code> — ปุ่มสีแดง</h3>
+<p>ปิดไม้ทั้งหมดของระบบทันที ใช้เมื่อมีข่าวแรงหรือต้องการออกจากตลาดเดี๋ยวนั้น</p>
+<hr>
+<h2>4. อ่านแผงควบคุม</h2>
+<h3>กล่องสถานะ</h3>
+<p>บอกชัดเจนว่า <strong>ขณะนี้ระบบกำลังรออะไร</strong> เป็นภาษาไทยทั้งหมด ตัวอย่าง</p>
+<div class="tw"><table><thead><tr>
+<th>ข้อความ</th>
+<th>ความหมาย</th>
+</tr></thead><tbody>
+<tr>
+<td><code>พร้อมเข้า - ผ่านด่านครบแล้ว</code></td>
+<td>ผ่านเงื่อนไขครบ กำลังจะเปิดไม้</td>
+</tr>
+<tr>
+<td><code>รอ - แท่งยืนยันยังไม่ปิด</code></td>
+<td>รอให้แท่งเทียนปิดก่อน ระบบไม่ตัดสินจากแท่งที่ยังวิ่ง</td>
+</tr>
+<tr>
+<td><code>รอ - ราคากำลังถูกทดสอบที่เส้น แตะเฉยๆ ยังไม่เข้า</code></td>
+<td>ราคาอยู่บนแนวสำคัญ รอผลว่าจะผ่านหรือเด้งกลับ</td>
+</tr>
+<tr>
+<td><code>รอ - ไทม์เฟรมใหญ่ยังไม่ตัดสินทิศทาง</code></td>
+<td>ภาพใหญ่ยังไม่ชัดเจน ระบบไม่เดา</td>
+</tr>
+<tr>
+<td><code>รอ - แรงหมดในเขตตัดสิน ห้ามไล่ราคา</code></td>
+<td>โมเมนตัมหมด ไม่ไล่ราคา</td>
+</tr>
+<tr>
+<td><code>ยิงไม่ได้ - สเปรดกว้างเกินกำหนด</code></td>
+<td>สเปรดผิดปกติ รอให้กลับสู่ภาวะปกติ</td>
+</tr>
+</tbody></table></div>
+<h3>แถวข้อมูล</h3>
+<ul>
+<li><strong>ทิศทางหลัก</strong> — ทิศทางที่ระบบจะเทรด</li>
+<li><strong>แท่งยืนยัน</strong> — แท่งที่ปิดล่าสุดของไทม์เฟรมยืนยัน</li>
+<li><strong>เส้น / ระยะ</strong> — แนวที่ราคาอยู่ใกล้ที่สุด และบทบาทของแนวนั้น</li>
+<li><strong>SMC / คลื่น</strong> — สรุปโครงสร้างตลาด และผลการนับคลื่น (V19)</li>
+<li><strong>ไม้ที่เปิดอยู่</strong> — รายการไม้ปัจจุบัน ไม้สวนเทรนด์แสดง <strong>สีฟ้าเมื่อมีกำไร สีส้มเมื่อขาดทุน</strong></li>
+<li><strong>ผลทดสอบ</strong> — สถิติสะสมของระบบ</li>
+</ul>
+<hr>
+<h2>5. ระบบป้องกันอัตโนมัติ</h2>
+<p><strong>ปิดไม้เมื่อโครงสร้างยืนยันกลับทิศ</strong> — หากเกิดการทะลุโครงสร้างสวนทางไม้ที่ถืออยู่บนไทม์เฟรมหลัก ระบบจะปิดไม้ทันทีโดยไม่รอให้ชน SL ส่วนสัญญาณที่อ่อนกว่านั้นจะถือต่อ เพราะยังมีโอกาสกลับไปถึงเป้า</p>
+<p><strong>ไม่ไล่ราคา</strong> — ไม่เข้าเมื่อแรงหมดในเขตตัดสิน ไม่เข้าเมื่อราคาวิ่งเลยครึ่งทางของช่องว่างไปแล้ว และไม่เข้าเมื่อช่องข้างหน้าเหลือสั้นกว่าระยะที่ราคาวิ่งมา</p>
+<p><strong>หนึ่งเหตุการณ์ หนึ่งไม้</strong> — เหตุการณ์เดิมเปิดซ้ำไม่ได้อีกตลอดกาล</p>
+<p><strong>ตรวจมาร์จิ้นก่อนสร้างรายการ</strong> — ไม่ส่งคำสั่งที่จะถูกปฏิเสธซ้ำๆ ไปยังโบรกเกอร์</p>
+<hr>
+<h2>6. การตั้งค่า</h2>
+<h3>ค่าที่ปรับได้ตามความต้องการ</h3>
+<div class="tw"><table><thead><tr>
+<th>ชื่อ</th>
+<th>ค่าเริ่มต้น</th>
+<th>ความหมาย</th>
+</tr></thead><tbody>
+<tr>
+<td><code>MagicNumber</code></td>
+<td>ค่าคงที่</td>
+<td>เลขประจำตัว EA — ดูข้อ 7</td>
+</tr>
+<tr>
+<td><code>StartAutoTrade</code></td>
+<td><code>false</code></td>
+<td>ให้เริ่มเทรดทันทีที่เปิดโปรแกรมหรือไม่</td>
+</tr>
+<tr>
+<td><code>StartManualLotSize</code></td>
+<td><code>0.01</code></td>
+<td>ขนาดล็อตเริ่มต้นในช่องกรอก</td>
+</tr>
+<tr>
+<td><code>StartRiskPercent</code></td>
+<td><code>20.0</code></td>
+<td>เปอร์เซ็นต์เริ่มต้นในช่องกรอก</td>
+</tr>
+<tr>
+<td><code>StartLotMode</code></td>
+<td><code>MANUAL</code></td>
+<td>เปิดมาให้ใช้แบบล็อตหรือแบบเปอร์เซ็นต์</td>
+</tr>
+<tr>
+<td><code>MaxSpreadSharePct</code></td>
+<td><code>50.0</code></td>
+<td>สเปรดกินระยะของไม้ได้มากสุดกี่เปอร์เซ็นต์</td>
+</tr>
+<tr>
+<td><code>MaxSpreadPoints</code></td>
+<td><code>80</code></td>
+<td>ไม่ได้ใช้แล้ว คงไว้ให้ไฟล์ตั้งค่าเดิมโหลดได้</td>
+</tr>
+<tr>
+<td><code>CalibRefATR</code></td>
+<td><code>37.33</code></td>
+<td>ค่าอ้างอิงของระบบ ไม่ต้องแก้</td>
+</tr>
+<tr>
+<td><code>CalibRefPointSize</code></td>
+<td><code>0.01</code></td>
+<td>ค่าอ้างอิงของระบบ ไม่ต้องแก้</td>
+</tr>
+</tbody></table></div>
+<h3>ระบบเลื่อน SL ตามราคา</h3>
+<div class="tw"><table><thead><tr>
+<th>ชื่อ</th>
+<th>ค่า</th>
+<th>ความหมาย</th>
+</tr></thead><tbody>
+<tr>
+<td><code>StepProtectPoints</code></td>
+<td><code>300</code></td>
+<td>ไม้ปกติ: เริ่มเลื่อน SL เมื่อกำไรถึง 300 จุด</td>
+</tr>
+<tr>
+<td><code>StepProtectIncrementPoints</code></td>
+<td><code>200</code></td>
+<td>จากนั้น SL ตามหลังราคา 200 จุด</td>
+</tr>
+<tr>
+<td><code>DevilPullbackTrailStart</code></td>
+<td><code>200</code></td>
+<td>ไม้สวนเทรนด์: เริ่มที่ 200 จุด</td>
+</tr>
+<tr>
+<td><code>DevilPullbackTrailDistance</code></td>
+<td><code>100</code></td>
+<td>ตามหลังราคา 100 จุด</td>
+</tr>
+</tbody></table></div>
+<p>ไม้ที่เปิดด้วยมือใช้ระยะกว้างกว่า คือเริ่มที่ 300 จุด และตามหลังราคา 300 จุด เพราะระบบไม่ทราบเหตุผลเบื้องหลังไม้ที่ผู้ใช้เปิดเอง จึงให้พื้นที่หายใจมากกว่า</p>
+<h3>ค่าเหล่านี้ใช้ได้กับทุกสินค้า โดยไม่ต้องแก้เอง</h3>
+<p><strong>"จุด" ไม่ได้มีความหมายเท่ากันในทุกสินค้า</strong> ทองราคา 4,300 กับบิตคอยน์ราคา 65,000 ต่างกันสิบห้าเท่า 300 จุดบนทองคือระยะที่มีความหมาย แต่บนบิตคอยน์เล็กจนอยู่ในสเปรดตั้งแต่ยังไม่เปิดไม้</p>
+<p>ระบบจึงไม่ได้ใช้ตัวเลขนี้เป็นจำนวนจุดตรงๆ แต่แปลงเป็น <strong>สัดส่วนของการแกว่งจริงของสินค้านั้น</strong> สินค้าที่แกว่งแรงจะได้ระยะกว้างขึ้นตามส่วน สินค้าที่นิ่งจะได้ระยะแคบลง โดยที่คุณยังตั้งเลขเดิมชุดเดียว</p>
+<div class="tw"><table><thead><tr>
+<th>สินค้า</th>
+<th>300 จุดที่ตั้งไว้ กลายเป็น</th>
+</tr></thead><tbody>
+<tr>
+<td>ทอง</td>
+<td>300 จุด</td>
+</tr>
+<tr>
+<td>บิตคอยน์</td>
+<td>ประมาณ 14,000 จุด</td>
+</tr>
+<tr>
+<td>EURUSD</td>
+<td>ประมาณ 44 จุด</td>
+</tr>
+</tbody></table></div>
+<p><strong>สัดส่วนระหว่างไม้แต่ละประเภทยังเท่าเดิมเสมอ</strong> ไม้สวนยังแน่นกว่าไม้ปกติ ไม้เปิดมือยังกว้างที่สุด เพียงแต่ขยายหรือหดตามสินค้าไปพร้อมกันทั้งชุด</p>
+<p>ระบบยังกำหนดพื้นขั้นต่ำให้ทุกระยะ คือต้องไม่แคบกว่าสเปรดบวกระยะขั้นต่ำที่โบรกเกอร์กำหนด เพราะจุดตัดขาดทุนที่ชิดกว่าสเปรดเป็นคำสั่งที่โบรกเกอร์ไม่รับอยู่แล้ว</p>
+<h3>ค่าที่แนะนำให้คงไว้</h3>
+<p>ทุกค่าในกลุ่ม <strong><code>HUMAN LINE ENGINE</code></strong> และ <strong><code>GOLDEN REFERENCE</code></strong> เป็นพารามิเตอร์แกนกลางที่ผ่านการปรับเทียบมาแล้ว การเปลี่ยนแปลงจะส่งผลต่อการตัดสินใจของทั้งระบบ</p>
+<hr>
+<h2>7. การใช้งานหลายกราฟ</h2>
+<p>หากต้องการติดตั้ง EA บนหลายกราฟพร้อมกัน <strong>ให้กำหนด <code>MagicNumber</code> ไม่ให้ซ้ำกัน</strong> เช่น</p>
+<pre>
+กราฟที่ 1  →  MagicNumber = 12001
+กราฟที่ 2  →  MagicNumber = 12002
+กราฟที่ 3  →  MagicNumber = 12003
+</pre>
+<p>เลขนี้คือสิ่งที่ EA ใช้แยกแยะว่าไม้ไหนเป็นของตัวเอง หากซ้ำกัน EA แต่ละตัวจะมองไม้ของตัวอื่นเป็นของตัวเองและทำงานทับซ้อนกัน</p>
+<p>สำหรับผู้เริ่มต้น แนะนำ <strong>ติดตั้ง 1 กราฟต่อ 1 คู่เงิน</strong> จะเรียบง่ายและควบคุมง่ายที่สุด</p>
+<hr>
+<h2>8. ตรวจสอบก่อนเริ่มใช้งาน</h2>
+<ul>
+<li>[ ] ลาก EA ลงกราฟเรียบร้อย และเห็นแผงควบคุม</li>
+<li>[ ] ปุ่ม <strong>Algo Trading</strong> บนแถบเครื่องมือ MT5 เป็นสีเขียว</li>
+<li>[ ] <code>MagicNumber</code> ไม่ซ้ำกับกราฟอื่น</li>
+<li>[ ] กำหนดขนาดไม้และกด <code>ล็อก</code> แล้ว (กรณีใช้ MANUAL)</li>
+<li>[ ] แผงแสดง <code>MARKET OPEN</code> และสเปรดอยู่ในระดับปกติ</li>
+<li>[ ] กด <code>เทรดอัตโนมัติ</code> เป็น <strong>ON</strong></li>
+</ul>
+<hr>
+<h2>9. คำถามที่พบบ่อย</h2>
+<div class="tw"><table><thead><tr>
+<th>อาการ</th>
+<th>แนวทางตรวจสอบ</th>
+</tr></thead><tbody>
+<tr>
+<td>ระบบยังไม่เปิดไม้</td>
+<td>อ่านกล่องสถานะบนแผง ระบบจะระบุเหตุผลเป็นภาษาไทยเสมอ</td>
+</tr>
+<tr>
+<td>แจ้งว่ามาร์จิ้นไม่พอ</td>
+<td>ขนาดไม้ใหญ่เกินทุน กดปุ่ม <code>LOT</code> ให้เป็นแบบล็อตกำหนดเอง แล้วกรอกล็อตต่ำสุดของโบรกเกอร์ หรือลดเปอร์เซ็นต์ลง</td>
+</tr>
+<tr>
+<td>แจ้งว่าสเปรดกว้างเกินไป</td>
+<td>สเปรดขณะนั้นกินระยะของไม้เกินครึ่ง ระบบจะแสดงเปอร์เซ็นต์ให้เห็นด้วย ให้รอจนสเปรดกลับสู่ภาวะปกติ</td>
+</tr>
+<tr>
+<td>แจ้งว่ารออยู่ในโซน หรือช่องข้างหน้าแคบ</td>
+<td>ระบบเลี่ยงการไล่ราคา รอจังหวะที่แนวสำคัญ (ดูข้อ 5)</td>
+</tr>
+<tr>
+<td>ไม่เห็นแผงควบคุม</td>
+<td>ตรวจว่าปุ่ม Algo Trading เป็นสีเขียว และ EA อยู่บนกราฟ</td>
+</tr>
+<tr>
+<td>กราฟมีเส้นมากเกินไป</td>
+<td>ปิดปุ่ม <code>แสดงผลบนกราฟ</code></td>
+</tr>
+<tr>
+<td>อัปเดตไฟล์แล้วไม่มีอะไรเปลี่ยน</td>
+<td>ต้องลาก EA ลงกราฟใหม่หลังเปลี่ยนไฟล์</td>
+</tr>
+</tbody></table></div>
+<p>รายละเอียดการตัดสินใจทุกขั้นตอนดูได้ที่ MT5 → แท็บ <strong>Toolbox</strong> → <strong>Experts</strong></p>
+<hr>
+<h2>10. หมายเหตุสำคัญ</h2>
+<p>การเทรดมีความเสี่ยง ผลการดำเนินงานในอดีตไม่ได้รับประกันผลในอนาคต</p>
+<p>แนะนำให้ทดสอบบนบัญชีทดลองหรือด้วยขนาดไม้ต่ำสุดจนกว่าจะเข้าใจพฤติกรรมของระบบดีพอ</p>
+<p>ผู้ใช้งานเป็นผู้รับผิดชอบการตั้งค่าความเสี่ยงและผลการเทรดของตนเอง</p>
+<p>📄 ดูรายละเอียดหลักการทำงานของระบบได้ที่ <strong><code>2_หลักการทำงาน.md</code></strong></p>
+</div></body></html>
